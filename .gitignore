@@ -1,0 +1,16 @@
+*.sln
+*.suo
+*.config
+*.csproj
+*.resx
+*.exe
+*.pdb
+*.ico
+*.cache
+*.resources
+*.settings
+*AssemblyInfo.cs
+*Resources.Designer.cs
+*Settings.Designer.cs
+*.AssemblyAttributes.cs
+*.txt

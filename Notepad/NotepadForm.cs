@@ -193,8 +193,6 @@ namespace Notepad
             DialogResult = fontDialog.ShowDialog();
             if (DialogResult == DialogResult.OK)
             {
-                Clipboard.SetText(maintextBox.SelectedText);
-               // maintextBox.Text = fontDialog.Font;
                 maintextBox.Font = fontDialog.Font;
             }
         }
@@ -212,6 +210,12 @@ namespace Notepad
                     MessageBox.Show("Ошибка параметров печати.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
+        }
+
+        private void оПрограммеToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AboutBox about = new AboutBox();
+            about.Show();
         }
     }
 }

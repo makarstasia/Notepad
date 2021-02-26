@@ -8,10 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using Microsoft.VisualBasic;
 
 namespace Notepad
 {
-    public partial class NotepadForm : System.Windows.Forms.Form
+    public partial class NotepadForm : Form
     {
         public NotepadForm()
         {
@@ -139,6 +140,47 @@ namespace Notepad
             this.Close();
         }
 
-        
+
+   
+        public void CopyText() //копировать
+        {
+            Clipboard.SetText(maintextBox.SelectedText);
+        }
+        public void CutText()//вырезать
+        {
+            Clipboard.SetText(maintextBox.SelectedText);
+            maintextBox.Text = maintextBox.Text.Remove(maintextBox.SelectionStart, maintextBox.SelectionLength);
+        }
+        public void PasteText() //вставить
+        {
+            maintextBox.Text = maintextBox.Text.Substring(0, maintextBox.SelectionStart) + Clipboard.GetText() + maintextBox.Text.Substring(maintextBox.SelectionStart, maintextBox.Text.Length - maintextBox.SelectionStart);
+        }
+
+        private void копироватьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CopyText();
+        }
+
+        private void вырезатьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CutText();
+        }
+
+        private void вставитьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            PasteText();
+        }
+
+        private void OnFormClosing(object sender, FormClosingEventArgs e)
+        {
+            SaveUnSave();
+        }
+
+        private void перейтиToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            GoToForm gotoform = new GoToForm();
+            gotoform.Owner = this;
+            gotoform.ShowDialog();
+        }
     }
 }

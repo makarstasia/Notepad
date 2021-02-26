@@ -182,5 +182,36 @@ namespace Notepad
             gotoform.Owner = this;
             gotoform.ShowDialog();
         }
+        
+        /// 
+        /// формат + печать
+        ///
+
+        private void шрифтToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            fontDialog.Font = maintextBox.Font;
+            DialogResult = fontDialog.ShowDialog();
+            if (DialogResult == DialogResult.OK)
+            {
+                Clipboard.SetText(maintextBox.SelectedText);
+               // maintextBox.Text = fontDialog.Font;
+                maintextBox.Font = fontDialog.Font;
+            }
+        }
+
+        private void печатьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (printDialog.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    printDocument.Print();
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Ошибка параметров печати.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+        }
     }
 }
